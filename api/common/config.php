@@ -17,7 +17,7 @@ if ($host === 'localhost' || strpos($host, '127.0.0.1') !== false) {
     define('EXPENSE_ACCESS_CODE', 'DEV_A9xB3pQ7rT2mL6zW');
 }else {
     $environment = 'production';
-    define('BASE_URL', 'https://admin.babumosshaii.in/');
+    define('BASE_URL', 'https://inquiry-form.babumosshaii.in/');
     define('PARTNER_BASE_URL', 'https://partners.babumosshaii.in/');
     define('SECRET_KEY', 'f4a9c2e1b5d3f1e6a7b8c9d0e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1');
     define('EXPENSE_ACCESS_CODE', 'PRO_A9xB3pQ7rT2mL6zW');
