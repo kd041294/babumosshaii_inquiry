@@ -230,6 +230,94 @@ require './api/common/config.php';
                 opacity: .6
             }
         }
+
+        /* ===== STATUS MODAL UI ===== */
+
+        .status-modal {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border-radius: 18px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Cross button */
+        .status-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            z-index: 10;
+            background-color: #f1f1f1;
+            border-radius: 50%;
+            padding: 8px;
+            opacity: 1;
+            transition: 0.3s ease;
+        }
+
+        .status-close:hover {
+            background-color: #ffe5e5;
+            transform: rotate(90deg) scale(1.05);
+        }
+
+        /* Icon ring */
+        .status-icon-wrapper {
+            width: 74px;
+            height: 74px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffd166, #ff6b6b, #7b2cbf);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulseGlow 1.5s infinite;
+        }
+
+        #statusIcon {
+            background: #fff;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Text */
+        .status-text {
+            font-size: 0.95rem;
+            color: #444;
+            line-height: 1.5;
+        }
+
+        /* Button */
+        .status-btn {
+            min-width: 110px;
+            transition: 0.3s ease;
+        }
+
+        .status-btn:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, .35);
+        }
+
+        /* Animations */
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 0 0 0 rgba(123, 44, 191, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 14px rgba(123, 44, 191, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(123, 44, 191, 0);
+            }
+        }
+        .fs-25{
+            font-size: 60%;
+            font-weight: bold;
+            text-transform: lowercase;
+        }
     </style>
 </head>
 
@@ -262,45 +350,40 @@ require './api/common/config.php';
             <div class="card-body p-4">
                 <div id="eventForm">
 
-                    <div class="section-title">Contact Details</div>
+                    <div class="section-title">Contact Details <span class="text-danger fs-25">(*required)</span></div>
 
                     <div class="mb-3 icon-input">
                         <i class="bi bi-person"></i>
                         <input type="text" id="full_name" class="form-control" placeholder="Full Name" />
-                        <div class="text-danger small mt-1 error" id="err_full_name"></div>
                     </div>
 
                     <div class="mb-3 icon-input">
                         <i class="bi bi-telephone"></i>
                         <input type="tel" id="contact" class="form-control" placeholder="What's App Contact Number" maxlength="10" />
-                        <div class="text-danger small mt-1 error" id="err_contact"></div>
                     </div>
 
                     <div class="mb-3 icon-input">
                         <i class="bi bi-envelope"></i>
                         <input type="email" id="email" class="form-control" placeholder="Email Address" />
-                        <div class="text-danger small mt-1 error" id="err_email"></div>
                     </div>
 
-                    <div class="section-title">Event Details</div>
+                    <div class="section-title">Event Details <span class="text-danger fs-25">(*required)</span></div>
                     <div class="mt-3 icon-input mb-3">
                         <i class="bi bi-calendar-event"></i>
                         <input type="date" id="event_date" class="form-control" placeholder="Event Date" />
-                        <div class="text-danger small mt-1 error" id="err_event_date"></div>
                     </div>
 
                     <div class="row g-3">
-                        <div class="col-6">
+                        <div class="col-12">
                             <div class="icon-input">
                                 <i class="bi bi-people"></i>
                                 <input type="number" id="total_guests" class="form-control" placeholder="Total Guests" />
-                                <div class="text-danger small mt-1 error" id="err_total_guests"></div>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-12">
                             <div class="icon-input">
                                 <i class="bi bi-currency-rupee"></i>
-                                <input type="number" id="budget" class="form-control" placeholder="Expected Budget" />
+                                <input type="number" id="budget" class="form-control" placeholder="Expected Budget Per Plate" />
                             </div>
                         </div>
                     </div>
@@ -308,7 +391,6 @@ require './api/common/config.php';
                     <div class="mt-3 icon-input">
                         <i class="bi bi-geo-alt"></i>
                         <input type="text" id="location" class="form-control" placeholder="Event Location with Pincode" />
-                        <div class="text-danger small mt-1 error" id="err_location"></div>
                     </div>
 
                     <div class="mt-3 icon-input">
@@ -322,7 +404,7 @@ require './api/common/config.php';
                         <div class="text-danger small mt-1 error" id="err_event_type"></div>
                     </div>
 
-                    <div class="section-title">Food & Preferences</div>
+                    <div class="section-title">Food & Preferences <span class="text-danger fs-25">(*optional)</span></div>
 
                     <div class="mb-3 icon-input">
                         <i class="bi bi-journal-text"></i>
@@ -335,9 +417,8 @@ require './api/common/config.php';
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label fw-semibold"><i class="bi bi-upload"></i> Upload Menu File</label>
+                        <label class="form-label fw-semibold"><i class="bi bi-upload"></i> Upload Menu File <span class="text-danger fs-25">(*optional)</span></label>
                         <input type="file" id="menu_file" class="form-control rounded-3" accept=".jpg,.jpeg,.png,.pdf">
-                        <div class="text-danger small mt-1 error" id="err_file"></div>
                     </div>
 
                     <div class="d-grid mt-4">
@@ -352,19 +433,35 @@ require './api/common/config.php';
     </div>
     <!-- Dynamic Status Modal -->
     <div class="modal fade" id="statusModal" tabindex="-1" aria-hidden="true"
-    data-bs-backdrop="static" data-bs-keyboard="false">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-0 rounded-4 shadow-lg">
-                <div class="modal-header border-0 text-center d-block">
-                    <div id="statusIcon" class="fs-1 mb-2"></div>
-                    <h5 class="modal-title fw-bold" id="statusTitle"></h5>
+        data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content status-modal border-0 shadow-lg rounded-4">
+
+                <!-- ❌ Close Button -->
+                <button type="button" class="btn-close status-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                <!-- Header -->
+                <div class="modal-header border-0 text-center d-block pb-2">
+                    <div class="status-icon-wrapper mx-auto mb-2">
+                        <div id="statusIcon" class="fs-1"></div>
+                    </div>
+                    <h5 class="modal-title fw-bold mt-2" id="statusTitle"></h5>
                 </div>
-                <div class="modal-body text-center">
-                    <p id="statusMessage" class="mb-0"></p>
+
+                <!-- Body -->
+                <div class="modal-body text-center pt-1">
+                    <p id="statusMessage" class="mb-0 status-text"></p>
                 </div>
-                <div class="modal-footer border-0 justify-content-center">
-                    <button type="button" class="btn btn-brand rounded-pill px-4" data-bs-dismiss="modal">OK</button>
+
+                <!-- Footer -->
+                <div class="modal-footer border-0 justify-content-center pt-2">
+                    <button type="button"
+                        class="btn btn-brand rounded-pill px-4 shadow-sm status-btn"
+                        data-bs-dismiss="modal">
+                        OK
+                    </button>
                 </div>
+
             </div>
         </div>
     </div>

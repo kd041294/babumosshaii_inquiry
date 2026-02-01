@@ -42,41 +42,47 @@ $('#submitBtn').on('click', function (e) {
     let file = $('#menu_file')[0].files[0];
 
     if (full_name === '') {
-        $('#err_full_name').text('Full name is required');
+        showStatusModal('error', 'Full name is required');
         valid = false;
+        return;
     }
     if (contact === '' || contact.length < 10) {
-        $('#err_contact').text('Valid contact number required');
+        showStatusModal('error', 'Valid contact number required');
         valid = false;
+        return;
     }
     if (email !== '' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        $('#err_email').text('Invalid email');
+        showStatusModal('error', 'Enter a valid email address');
         valid = false;
+        return;
     }
     if (total_guests === '') {
-        $('#err_total_guests').text('Total guests required');
+        showStatusModal('error', 'Expected heads is required');
         valid = false;
+        return;
     }
     if (location === '') {
-        $('#err_location').text('Location is required');
+        showStatusModal('error', 'Location is reuired');
         valid = false;
+        return;
     }
     if (event_type === '') {
-        $('#err_event_type').text('Select event type');
+        showStatusModal('error', 'Event type is reuired');
         valid = false;
+        return;
     }
 
     if (event_date === "") {
-        $("#err_event_date").text("Please select event date");
+        showStatusModal('error', 'Event date is required');
         isValid = false;
+        return;
     }
-
-
     if (file) {
         let allowed = ['image/jpeg', 'image/png', 'application/pdf'];
         if (!allowed.includes(file.type)) {
             $('#err_file').text('Only JPG, PNG, PDF allowed');
             valid = false;
+            return;
         }
     }
 
