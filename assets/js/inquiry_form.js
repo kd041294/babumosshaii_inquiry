@@ -95,7 +95,7 @@ $('#submitBtn').on('click', function (e) {
     formData.append('notes', notes);
     if (file) formData.append('menu_file', file);
     $.ajax({
-        url: BASE_URL + '/api/api_add_inquiry.php',
+        url: BASE_URL + 'api/api_add_inquiry.php',
         type: 'POST',
         data: formData,
         processData: false,
