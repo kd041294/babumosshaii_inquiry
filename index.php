@@ -313,10 +313,20 @@ require './api/common/config.php';
                 box-shadow: 0 0 0 0 rgba(123, 44, 191, 0);
             }
         }
-        .fs-25{
+
+        .fs-25 {
             font-size: 60%;
             font-weight: bold;
             text-transform: lowercase;
+        }
+
+        .form-header-logo {
+            top: 12px;
+            right: 16px;
+            width: 60px;
+            height: auto;
+            object-fit: contain;
+            opacity: 0.95;
         }
     </style>
 </head>
@@ -339,13 +349,25 @@ require './api/common/config.php';
             <div class="watermark-float"></div>
             <!-- END WATERMARKS -->
 
-            <div class="card-header form-header text-center rounded-top-4 py-4">
-                <h4 class="mb-1 fw-bold"><i class="bi bi-calendar2-heart"></i> Event Inquiry</h4>
-                <p class="mb-0 small opacity-75">Tell us about your event — we’ll handle the rest ✨</p>
+            <div class="card-header form-header text-center rounded-top-4 py-4 position-relative">
+
+                <!-- Logo (Top Right) -->
+                <img src="./assets/images/logo.png"
+                    alt="Logo"
+                    class="form-header-logo position-absolute">
+
+                <h4 class="mb-1 fw-bold">
+                    <i class="bi bi-calendar2-heart"></i> Event Inquiry
+                </h4>
+                <p class="mb-0 small opacity-75">
+                    Tell us about your event — we’ll handle the rest ✨
+                </p>
+
                 <div class="progress mt-3">
                     <div class="progress-bar" id="formProgress" style="width:20%"></div>
                 </div>
             </div>
+
 
             <div class="card-body p-4">
                 <div id="eventForm">

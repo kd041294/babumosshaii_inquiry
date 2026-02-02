@@ -107,19 +107,15 @@ $('#submitBtn').on('click', function (e) {
         processData: false,
         contentType: false,
         dataType: 'json',
-
         beforeSend: function () {
             $("#globalLoader").removeClass("d-none");
         },
-
         success: function (res) {
-
             if (res.status === true) {
                 showStatusModal(
                     'success',
                     res.message || 'Inquiry submitted successfully! We will get back to you shortly.'
                 );
-
                 $('#eventForm input, #eventForm textarea').val('');
                 $('select').val('');
                 $('#menu_file').val('');
