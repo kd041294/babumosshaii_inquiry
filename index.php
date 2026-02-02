@@ -423,7 +423,6 @@ require './api/common/config.php';
                                 <option value="<?= htmlspecialchars($type) ?>"><?= htmlspecialchars($type) ?></option>
                             <?php endforeach; ?>
                         </select>
-                        <div class="text-danger small mt-1 error" id="err_event_type"></div>
                     </div>
 
                     <div class="section-title">Food & Preferences <span class="text-danger fs-25">(*optional)</span></div>
