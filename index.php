@@ -3,15 +3,13 @@ require './api/common/config.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Event Inquiry Form | BabuMosshaii</title>
-    <link rel="icon" href="assets/logo.png" type="image/icon type">
+    <link rel="icon" href="assets/images/logo.png" type="image/icon type">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-
     <style>
         :root {
             --brand: #7b2cbf;
@@ -46,7 +44,7 @@ require './api/common/config.php';
         /* ================= WATERMARK SYSTEM ================= */
         /* Base logo */
         :root {
-            --logo-url: url(<?= BASE_URL ?>.'/assets/logo.png');
+            --logo-url: url('<?= BASE_URL ?>assets/images/logo.png');
         }
 
         /* Center watermark */
@@ -123,7 +121,6 @@ require './api/common/config.php';
         }
 
         /* =================================================== */
-
         .icon-input {
             position: relative;
             display: flex;
@@ -162,7 +159,6 @@ require './api/common/config.php';
             letter-spacing: .5px;
             text-transform: uppercase;
         }
-
 
         .btn-brand {
             background: linear-gradient(135deg, #ff6b6b, #ff8787);
@@ -330,7 +326,6 @@ require './api/common/config.php';
         }
     </style>
 </head>
-
 <body>
     <!-- Fullscreen Loader -->
     <div id="globalLoader" class="global-loader d-none">
@@ -367,18 +362,13 @@ require './api/common/config.php';
                     <div class="progress-bar" id="formProgress" style="width:20%"></div>
                 </div>
             </div>
-
-
             <div class="card-body p-4">
                 <div id="eventForm">
-
                     <div class="section-title">Contact Details <span class="text-danger fs-25">(*required)</span></div>
-
                     <div class="mb-3 icon-input">
                         <i class="bi bi-person"></i>
                         <input type="text" id="full_name" class="form-control" placeholder="Full Name" />
                     </div>
-
                     <div class="mb-3 icon-input">
                         <i class="bi bi-telephone"></i>
                         <input type="tel" id="contact" class="form-control" placeholder="What's App Contact Number" maxlength="10" />
@@ -447,7 +437,6 @@ require './api/common/config.php';
                             <i class="bi bi-send"></i> Submit Inquiry
                         </button>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -457,10 +446,8 @@ require './api/common/config.php';
         data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-dialog-centered modal-sm">
             <div class="modal-content status-modal border-0 shadow-lg rounded-4">
-
                 <!-- ❌ Close Button -->
                 <button type="button" class="btn-close status-close" data-bs-dismiss="modal" aria-label="Close"></button>
-
                 <!-- Header -->
                 <div class="modal-header border-0 text-center d-block pb-2">
                     <div class="status-icon-wrapper mx-auto mb-2">
@@ -468,12 +455,10 @@ require './api/common/config.php';
                     </div>
                     <h5 class="modal-title fw-bold mt-2" id="statusTitle"></h5>
                 </div>
-
                 <!-- Body -->
                 <div class="modal-body text-center pt-1">
                     <p id="statusMessage" class="mb-0 status-text"></p>
                 </div>
-
                 <!-- Footer -->
                 <div class="modal-footer border-0 justify-content-center pt-2">
                     <button type="button"
@@ -482,7 +467,6 @@ require './api/common/config.php';
                         OK
                     </button>
                 </div>
-
             </div>
         </div>
     </div>
@@ -493,5 +477,4 @@ require './api/common/config.php';
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="./assets/js/inquiry_form.js"></script>
 </body>
-
 </html>
